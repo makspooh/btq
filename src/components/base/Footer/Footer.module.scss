@@ -1,0 +1,25 @@
+.footer {
+    width: 100%;
+    padding: 15px 0;
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon {
+    transform: scale(.9);
+    margin: 0 5px;
+    transition: all .3s;
+
+    &:hover {
+        transform: scale(1);
+    }
+}

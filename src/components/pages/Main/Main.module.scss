@@ -1,0 +1,78 @@
+@import "../../../styles/variables.scss";
+
+@mixin defaultLogoStyles {
+    color: $text;
+    font-size: clamp(5rem, 8vw, 6rem);
+    line-height: clamp(5rem, 8vw, 6rem);
+    cursor: pointer;
+    z-index: 1;
+    transition: 0.3s all ease;
+    font-weight: 700;
+}
+
+.container {
+    width: 100%;
+    min-height: 100vh;
+}
+
+.content, .info {
+    width: 100%;
+    min-height: 100vh;
+    padding: calc(10vw / 2) calc(15vw / 2);
+    box-sizing: border-box;
+}
+
+.content {
+    background-image: url(../../../assets/img/bg-grid.svg);
+    background-size: cover;
+    background-position: 50% 50%;
+}
+
+.info {
+    background-color: $background;
+    display: flex;
+    flex-direction: column;
+}
+
+.infoData {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    position: relative;
+}
+
+.bgPic {
+    max-width: 90vw;
+    max-height: 90vw;
+    position: absolute;
+    animation: infiniteRotation 60s infinite alternate-reverse;
+    pointer-events: none;
+}
+
+.logoText {
+    @include defaultLogoStyles;
+    transition: 0.3s all ease;
+  
+    &:hover {
+      transform: translate(3px, -3px);
+    }
+}
+
+.logoTextBg {
+    @include defaultLogoStyles;
+    pointer-events: none;
+    position: absolute;
+    color: blue;
+    z-index: 0;
+}
+
+@keyframes infiniteRotation {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
