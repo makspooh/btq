@@ -1,0 +1,5 @@
+const ROOT = '/';
+
+export {
+    ROOT
+};
