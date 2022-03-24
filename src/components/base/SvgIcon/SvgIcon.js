@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 
 // basic
 import { ReactComponent as BgGrid } from '../../../assets/img/bg-grid.svg';
@@ -33,7 +34,7 @@ const SVG_BY_TYPE = {
 
 class SvgIcon extends PureComponent {
     render() {
-        const { type, className = '' } = this.props;
+        const { type, className } = this.props;
         const CustomSvg = SVG_BY_TYPE[type];
 
         return (
@@ -44,5 +45,14 @@ class SvgIcon extends PureComponent {
         );
     }
 }
+
+SvgIcon.propTypes = {
+    type: PropTypes.string.isRequired,
+    className: PropTypes.string
+};
+
+SvgIcon.defaultProps = {
+    className: ''
+};
 
 export default SvgIcon;

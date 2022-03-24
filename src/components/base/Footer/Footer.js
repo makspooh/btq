@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 import { FOOTER_SOCIAL } from '../../../utils/constants/footer_social';
 
@@ -6,7 +7,14 @@ import SvgIcon from '../SvgIcon';
 
 import styles from './Footer.module.scss';
 
-function Footer() {
+function Footer({ handleScroll }) {
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+
+        return () => window.removeEventListener('scroll', handleScroll);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
     const renderIcons = () => {
         return FOOTER_SOCIAL.map((el) => {
             const { type, path } = el;
@@ -33,5 +41,13 @@ function Footer() {
         </footer>
     );
 }
+
+Footer.propTypes = {
+    handleScroll: PropTypes.func
+};
+
+Footer.defaultProps = {
+    handleScroll: () => {}
+};
 
 export default Footer;
