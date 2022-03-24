@@ -37,6 +37,10 @@
     @include defaultLinkStyles;
 }
 
+.dark {
+    color: $background
+}
+
 .activeLink {
     @include activeLinkStyles;
 }

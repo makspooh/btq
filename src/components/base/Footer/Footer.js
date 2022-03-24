@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
+import React, { forwardRef, useEffect } from 'react';
+import classNames from 'classnames';
 
 import { FOOTER_SOCIAL } from '../../../utils/constants/footer_social';
 
@@ -7,11 +7,11 @@ import SvgIcon from '../SvgIcon';
 
 import styles from './Footer.module.scss';
 
-function Footer({ handleScroll }) {
+function Footer({ onScroll, colorMode }, innerRef) {
     useEffect(() => {
-        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('scroll', onScroll);
 
-        return () => window.removeEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', onScroll);
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -27,14 +27,22 @@ function Footer({ handleScroll }) {
                     rel='noreferrer'
                     className={styles.icon}
                 >
-                    <SvgIcon type={type} />
+                    <SvgIcon
+                        type={type}
+                        className={classNames(
+                            { [styles.dark]: colorMode === 'dark' }
+                        )}
+                    />
                 </a>
             );
         });
     }
 
     return (
-        <footer className={styles.footer}>
+        <footer
+            ref={innerRef}
+            className={styles.footer}
+        >
             <nav className={styles.nav}>
                 {renderIcons()}
             </nav>
@@ -42,12 +50,4 @@ function Footer({ handleScroll }) {
     );
 }
 
-Footer.propTypes = {
-    handleScroll: PropTypes.func
-};
-
-Footer.defaultProps = {
-    handleScroll: () => {}
-};
-
-export default Footer;
+export default forwardRef(Footer);

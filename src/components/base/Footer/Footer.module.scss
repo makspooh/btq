@@ -1,3 +1,5 @@
+@import '../../../styles/variables.scss';
+
 .footer {
     width: 100%;
     padding: 15px 0;
@@ -22,7 +24,17 @@
     margin: 0 5px;
     transition: all .3s;
 
+    path {
+        transition: all .3s;
+    }
+
     &:hover {
         transform: scale(1);
+    }
+}
+
+.dark {
+    path {
+        fill: $background;
     }
 }

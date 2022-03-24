@@ -1,16 +1,16 @@
-import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
+import classNames from 'classnames';
+import React, { forwardRef, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import { NAVIGATION } from '../../../utils/constants/navigation';
 
 import styles from './Header.module.scss';
 
-function Header({ handleScroll }) {
+function Header({ onScroll, colorMode }, innerRef) {
     useEffect(() => {
-        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('scroll', onScroll);
 
-        return () => window.removeEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', onScroll);
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -23,9 +23,10 @@ function Header({ handleScroll }) {
                     key={path}
                     to={path}
                     className={({ isActive }) => 
-                        isActive
-                            ? styles.activeLink
-                            : styles.link
+                        classNames(styles.link, {
+                            [styles.activeLink]: isActive,
+                            [styles[colorMode]]: styles[colorMode]
+                        })
                     }
                 >
                     <span>{title}</span>
@@ -35,7 +36,10 @@ function Header({ handleScroll }) {
     }
 
     return (
-        <header className={styles.header}>
+        <header
+            ref={innerRef}
+            className={styles.header}
+        >
             <nav className={styles.nav}>
                 {renderNav()}
             </nav>
@@ -43,12 +47,4 @@ function Header({ handleScroll }) {
     );
 }
 
-Header.propTypes = {
-    handleScroll: PropTypes.func
-};
-
-Header.defaultProps = {
-    handleScroll: () => {}
-};
-
-export default Header;
+export default forwardRef(Header);

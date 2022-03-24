@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 
 import Header from '../../base/Header';
 import Footer from '../../base/Footer';
@@ -7,6 +7,33 @@ import SvgIcon from '../../base/SvgIcon';
 import styles from './Main.module.scss';
 
 function Main() {
+  const [headerColorMode, setHeaderColorMode] = useState('light');
+  const [footerColorMode, setFooterColorMode] = useState('light');
+
+  const headerRef = useRef(null);
+  const footerRef = useRef(null);
+
+  const getElementsBounding = () => {
+    const { height: headerHeight } = headerRef?.current.getBoundingClientRect();
+    const { height: footerHeight } = footerRef?.current.getBoundingClientRect();
+
+    return {
+      headerHeight,
+      footerHeight
+    };
+  }
+
+  const handleScroll = () => {
+    const { scrollY, innerHeight } = window;
+    const { headerHeight, footerHeight } = getElementsBounding();
+
+    const currentHeaderColorMode = scrollY >= (innerHeight - headerHeight) ? 'dark' : 'light';
+    const currentFooterColorMode = scrollY >= (footerHeight - footerHeight / 2) ? 'dark' : 'light';
+
+    setFooterColorMode(currentFooterColorMode);
+    setHeaderColorMode(currentHeaderColorMode);
+  }
+
   const renderLogo = () => {
     return (
       <>
@@ -19,7 +46,11 @@ function Main() {
   return (
     <div className={styles.container}>
       <div className={styles.info}>
-        <Header />
+        <Header
+          ref={headerRef}
+          onScroll={handleScroll}
+          colorMode={headerColorMode}
+        />
 
         <div className={styles.infoData}>
           {renderLogo()}
@@ -30,7 +61,11 @@ function Main() {
           />
         </div>
 
-        <Footer />
+        <Footer
+          ref={footerRef}
+          onScroll={handleScroll}
+          colorMode={footerColorMode}
+        />
       </div>
 
       <div className={styles.content}></div>
