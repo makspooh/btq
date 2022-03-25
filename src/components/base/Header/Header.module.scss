@@ -1,4 +1,5 @@
 @import "../../../styles/variables.scss";
+@import "../../../styles/mixins.scss";
 
 @mixin defaultLinkStyles {
     font-size: 1.7rem;
@@ -43,4 +44,10 @@
 
 .activeLink {
     @include activeLinkStyles;
+}
+
+@include medium {
+    .header {
+        width: 50vw;
+    }
 }

@@ -1,4 +1,5 @@
 @import '../../../styles/variables.scss';
+@import '../../../styles/mixins.scss';
 
 .footer {
     width: 100%;
@@ -9,6 +10,7 @@
     justify-content: center;
     align-items: center;
     position: fixed;
+    z-index: 1;
     bottom: 0;
     left: 0;
 }
@@ -36,5 +38,11 @@
 .dark {
     path {
         fill: $background;
+    }
+}
+
+@include medium {
+    .footer {
+        width: 50vw;
     }
 }

@@ -7,9 +7,14 @@
     color: #FFFFFF;
     width: 100%;
     position: relative;
+    max-width: 540px;
 
     &:last-of-type {
         margin-bottom: 0;
+    }
+
+    &:first-of-type {
+        margin-top: 0;
     }
 }
 
@@ -119,9 +124,9 @@
     transition: all .3s;
 }
 
-@include small {
+@include medium {
     .artist {
-        width: 540px;
+        min-width: 100%;
     }
 }
 

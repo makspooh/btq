@@ -5,7 +5,9 @@ import * as ROUTES from '../../../utils/constants/routes';
 import Header from '../../base/Header';
 import Footer from '../../base/Footer';
 import SvgIcon from '../../base/SvgIcon';
+import About from './components/About';
 import Artists from './components/Artists/Artists';
+import Mixes from './components/Mixes';
 
 import styles from './Main.module.scss';
 
@@ -16,6 +18,7 @@ function Main() {
   const [headerColorMode, setHeaderColorMode] = useState('light');
   const [footerColorMode, setFooterColorMode] = useState('light');
   const [contentLeftValue, setContentLeftValue] = useState(undefined);
+  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 1200);
 
   const headerRef = useRef(null);
   const footerRef = useRef(null);
@@ -25,6 +28,12 @@ function Main() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(handlePathChange, [pathname]);
 
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const getElementsBounding = () => {
     const headerHeight = headerRef?.current?.getBoundingClientRect().height || 0;
     const footerHeight = footerRef?.current?.getBoundingClientRect().height || 0;
@@ -33,6 +42,10 @@ function Main() {
       headerHeight,
       footerHeight
     };
+  }
+
+  function handleResize() {
+    setIsDesktop(window.innerWidth >= 1200);
   }
 
   const handleScroll = () => {
@@ -56,7 +69,11 @@ function Main() {
       }
 
       default: {
-        setContentLeftValue(`-${100 * nextPathIndex}`);
+        const output = isDesktop
+          ? `-${50 * nextPathIndex + (4 * nextPathIndex)}`
+          : `-${100 * nextPathIndex + (8 * nextPathIndex)}`;
+
+        setContentLeftValue(output);
         break;
       }
     }
@@ -69,6 +86,14 @@ function Main() {
         <span className={styles.logoTextBg}>belletriq</span>
       </>
     );
+  }
+
+  const getWidth = () => {
+    const output = isDesktop
+      ? `${100 / 2 * PATHS.length}vw`
+      : `${100 * PATHS.length}vw`;
+
+    return output;
   }
 
   if (contentLeftValue === undefined) {
@@ -104,11 +129,13 @@ function Main() {
         <div
           className={styles.contentData}
           style={{
-            width: `${window.innerWidth * 0.85 * PATHS.length}px`,
+            width: getWidth(),
             left: `${contentLeftValue}vw`
           }}
         >
+          <About />
           <Artists />
+          <Mixes />
         </div>
       </div>
     </section>

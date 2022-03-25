@@ -41,8 +41,10 @@ function Artists() {
     };
 
     return (
-        <div className={styles.artists}>
-          {renderArtists()}
+        <div className={styles.container}>
+            <div className={styles.content}>
+                {renderArtists()}
+            </div>
         </div>
     );
 }

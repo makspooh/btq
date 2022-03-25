@@ -6,25 +6,34 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 84vw;
-    margin: 0 16vw;
+    min-width: 84vw;
+    max-width: 84vw;
 }
 
 .content {
+    background-color: $background;
+    padding: calc(16vw / 2);
     box-sizing: border-box;
     max-width: 540px;
-    width: 100%;
+}
+
+.text {
+    color: #FFFFFF;
+    font-size: 16px;
+    display: inline-block;
+
+    &:not(:last-of-type) {
+        margin-bottom: 1.5rem;
+    }
 }
 
 @include medium {
     .container {
         min-width: 42vw;
         max-width: 42vw;
-        margin: 0 4vw;
     }
 
     .content {
         max-width: unset;
-        max-height: 100vh;
     }
 }

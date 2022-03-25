@@ -1,0 +1,46 @@
+@import '../../../../../styles/variables.scss';
+@import '../../../../../styles/mixins.scss';
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: calc(84vw);
+}
+
+.content {
+    background-color: $background;
+    padding: calc(16vw / 2);
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 540px;
+}
+
+.mixBox {
+    &:not(:last-of-type) {
+        margin-bottom: 1.5rem;
+    }
+}
+
+.link {
+    font-size: 10px;
+    color: #CCCCCC;
+    word-break: normal;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-family: Interstate, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Garuda, Verdana, Tahoma, sans-serif;
+    font-weight: 100;
+}
+
+@include medium {
+    .container {
+        min-width: 42vw;
+        max-width: 42vw;
+    }
+
+    .content {
+        max-width: unset;
+    }
+}
