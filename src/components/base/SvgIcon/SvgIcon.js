@@ -35,13 +35,11 @@ const SVG_BY_TYPE = {
 class SvgIcon extends PureComponent {
     render() {
         const { type, className } = this.props;
+
         const CustomSvg = SVG_BY_TYPE[type];
 
         return (
-            <CustomSvg
-                className={className}
-                {...this.props}
-            />
+            <CustomSvg className={className} />
         );
     }
 }

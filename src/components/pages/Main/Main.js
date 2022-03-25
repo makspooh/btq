@@ -1,21 +1,33 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+
+import * as ROUTES from '../../../utils/constants/routes';
 
 import Header from '../../base/Header';
 import Footer from '../../base/Footer';
 import SvgIcon from '../../base/SvgIcon';
+import Artists from './components/Artists/Artists';
 
 import styles from './Main.module.scss';
+
+const PATHS = Object.values(ROUTES)
+  .filter((el) => el !== '/');
 
 function Main() {
   const [headerColorMode, setHeaderColorMode] = useState('light');
   const [footerColorMode, setFooterColorMode] = useState('light');
+  const [contentLeftValue, setContentLeftValue] = useState(undefined);
 
   const headerRef = useRef(null);
   const footerRef = useRef(null);
 
+  const { pathname } = window.location;
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(handlePathChange, [pathname]);
+
   const getElementsBounding = () => {
-    const { height: headerHeight } = headerRef?.current.getBoundingClientRect();
-    const { height: footerHeight } = footerRef?.current.getBoundingClientRect();
+    const headerHeight = headerRef?.current?.getBoundingClientRect().height || 0;
+    const footerHeight = footerRef?.current?.getBoundingClientRect().height || 0;
 
     return {
       headerHeight,
@@ -34,6 +46,22 @@ function Main() {
     setHeaderColorMode(currentHeaderColorMode);
   }
 
+  function handlePathChange() {
+    const nextPathIndex = PATHS.indexOf(pathname);
+
+    switch (true) {
+      case nextPathIndex === 0: {
+        setContentLeftValue(nextPathIndex);
+        break;
+      }
+
+      default: {
+        setContentLeftValue(`-${100 * nextPathIndex}`);
+        break;
+      }
+    }
+  }
+
   const renderLogo = () => {
     return (
       <>
@@ -43,8 +71,12 @@ function Main() {
     );
   }
 
+  if (contentLeftValue === undefined) {
+    return null;
+  }
+
   return (
-    <div className={styles.container}>
+    <section className={styles.container}>
       <div className={styles.info}>
         <Header
           ref={headerRef}
@@ -68,8 +100,18 @@ function Main() {
         />
       </div>
 
-      <div className={styles.content}></div>
-    </div>
+      <div className={styles.content}>
+        <div
+          className={styles.contentData}
+          style={{
+            width: `${window.innerWidth * 0.85 * PATHS.length}px`,
+            left: `${contentLeftValue}vw`
+          }}
+        >
+          <Artists />
+        </div>
+      </div>
+    </section>
   );
 }
 

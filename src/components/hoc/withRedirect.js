@@ -15,7 +15,7 @@ export function WithRedirect({ children }) {
         const isRedirect = !routes.includes(pathname);
 
         if (isRedirect) {
-            navigate(ARTISTS);
+            navigate(ABOUT);
         }
     }
 
