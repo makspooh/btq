@@ -14,6 +14,11 @@
     box-sizing: border-box;
     max-width: 540px;
     width: 100%;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
 }
 
 @include medium {
