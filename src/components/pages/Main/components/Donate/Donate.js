@@ -36,7 +36,7 @@ function Donate({ setIsVisible, updateMessage }) {
 
     const handleCopy = (value) => () => {
         navigator.clipboard.writeText(value);
-        dispatch(updateMessage('Address was copied'));
+        dispatch(updateMessage('Address has been copied'));
         dispatch(setIsVisible(true));
     }
 
