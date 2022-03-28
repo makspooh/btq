@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
+import { connect, useDispatch } from 'react-redux';
 import classNames from 'classnames';
 import cloneDeep from 'lodash/cloneDeep';
+
+import * as toastActions from '../../../../../actions/toast';
 
 import SvgIcon from '../../../../base/SvgIcon';
 
@@ -8,8 +11,10 @@ import { DONATE } from '../../../../../utils/constants/donate';
 
 import styles from './Donate.module.scss';
 
-function Donate() {
+function Donate({ setIsVisible, updateMessage }) {
     const [isVisibleState, setIsVisibleState] = useState({ crypto: false, currency: false });
+
+    const dispatch = useDispatch();
 
     const handleChangeVisibility = (index) => () => {
         setIsVisibleState((prev) => {
@@ -31,6 +36,8 @@ function Donate() {
 
     const handleCopy = (value) => () => {
         navigator.clipboard.writeText(value);
+        dispatch(updateMessage('Address was copied'));
+        dispatch(setIsVisible(true));
     }
 
     const renderDonateItems = (items) => {
@@ -66,14 +73,16 @@ function Donate() {
                             </div>
                         )
                         : (
-                            <a
-                                className={styles.iconContainer}
-                                href={value}
-                                target='_blank'
-                                rel='noreferrer'
-                            >
-                                <SvgIcon type='link' className={styles.icon} />
-                            </a>
+                            <div className={styles.iconsContainer}>
+                                <a
+                                    className={styles.iconContainer}
+                                    href={value}
+                                    target='_blank'
+                                    rel='noreferrer'
+                                >
+                                    <SvgIcon type='link' className={styles.icon} />
+                                </a>
+                            </div>
                         )
                     }
                 </div>
@@ -126,4 +135,7 @@ function Donate() {
     );
 }
 
-export default Donate;
+export default connect(
+    null,
+    { ...toastActions }
+)(Donate);

@@ -1,9 +1,10 @@
 import produce from 'immer';
 
-import { SET_IS_VISIBLE } from '../actions/toast';
+import { SET_IS_VISIBLE, SET_MESSAGE } from '../actions/toast';
 
 const initialState = {
-    isVisible: ''
+    isVisible: false,
+    message: ''
 };
 
 export default produce((draft, action) => {
@@ -14,6 +15,12 @@ export default produce((draft, action) => {
             draft.isVisible = payload.isVisible;
             break;
         }
+
+        case SET_MESSAGE: {
+            draft.message = payload.message;
+            break;
+        }
+
         default:
             break;
     }
