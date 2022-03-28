@@ -92,10 +92,20 @@ function Donate() {
                 key={title}
                 className={styles.donateBox}
             >
-                <span
-                    className={styles.title}
+                <div
+                    className={styles.titleContainer}
                     onClick={handleChangeVisibility(index)}
-                >{title}</span>
+                >
+                    <span className={styles.title}>{title}</span>
+
+                    <div className={classNames(styles.indicator, {
+                        [styles.indicatorOpened]: index === 0
+                            ? isVisibleState.crypto
+                            : isVisibleState.currency
+                    })}>
+                        <div className={styles.indicatorItem} />
+                    </div>
+                </div>
 
                 <div className={classNames(styles.linksContainer, {
                     [styles.linksContainer_visible]: index === 0
