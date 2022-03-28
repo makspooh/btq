@@ -6,7 +6,7 @@ import * as toastActions from '../../../actions/toast';
 
 import styles from './Toast.module.scss';
 
-function Toast({ isVisible, message, setIsVisible }) {
+function Toast({ isVisible, message, setIsToastVisible }) {
     useEffect(() => {
         handleVisibilityChange();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -15,7 +15,7 @@ function Toast({ isVisible, message, setIsVisible }) {
     function handleVisibilityChange() {
         if (isVisible) {
             setTimeout(() => {
-                setIsVisible(false);
+                setIsToastVisible(false);
             }, 2000);
         }
     }

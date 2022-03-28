@@ -1,14 +1,14 @@
-export const SET_IS_VISIBLE = 'SET_IS_VISIBLE';
+export const SET_IS_TOAST_VISIBLE = 'SET_IS_TOAST_VISIBLE';
 export const SET_MESSAGE = 'SET_MESSAGE';
 
-export function setIsVisible(isVisible) {
+export function setIsToastVisible(isVisible) {
     return {
-        type: SET_IS_VISIBLE,
+        type: SET_IS_TOAST_VISIBLE,
         payload: { isVisible }
     };
 }
 
-export function updateMessage(message) {
+export function updateToastMessage(message) {
     return {
         type: SET_MESSAGE,
         payload: { message }

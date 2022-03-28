@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import cloneDeep from 'lodash/cloneDeep';
 
 import * as toastActions from '../../../../../actions/toast';
+import * as modalActions from '../../../../../actions/modal';
 
 import SvgIcon from '../../../../base/SvgIcon';
 
@@ -11,7 +12,7 @@ import { DONATE } from '../../../../../utils/constants/donate';
 
 import styles from './Donate.module.scss';
 
-function Donate({ setIsVisible, updateMessage }) {
+function Donate({ setIsToastVisible, updateToastMessage, setIsModalVisible, setModalViews }) {
     const [isVisibleState, setIsVisibleState] = useState({ crypto: false, currency: false });
 
     const dispatch = useDispatch();
@@ -36,8 +37,13 @@ function Donate({ setIsVisible, updateMessage }) {
 
     const handleCopy = (value) => () => {
         navigator.clipboard.writeText(value);
-        dispatch(updateMessage('Address has been copied'));
-        dispatch(setIsVisible(true));
+        dispatch(updateToastMessage('Address has been copied'));
+        dispatch(setIsToastVisible(true));
+    }
+
+    const handleShowQr = (data) => () => {
+        setModalViews([{ type: 'cryptoQr', params: data }]);
+        setIsModalVisible(true);
     }
 
     const renderDonateItems = (items) => {
@@ -68,6 +74,7 @@ function Donate({ setIsVisible, updateMessage }) {
                                     <SvgIcon
                                         type='qr'
                                         className={styles.icon}
+                                        onClick={handleShowQr(value)}
                                     />
                                 </div>
                             </div>
@@ -137,5 +144,5 @@ function Donate({ setIsVisible, updateMessage }) {
 
 export default connect(
     null,
-    { ...toastActions }
+    { ...toastActions, ...modalActions }
 )(Donate);

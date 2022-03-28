@@ -1,0 +1,39 @@
+@import '../../../styles/variables.scss';
+
+.container {
+    position: fixed;
+    z-index: 3;
+    overflow: hidden;
+    background-color: rgba($color: $background, $alpha: .5);
+    width: 100vw;
+    height: 100vh;
+    display: inline-block;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: all .3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8vw;
+    box-sizing: border-box;
+
+    &_visible {
+        opacity: 1;
+        pointer-events: all;
+    }
+}
+
+.wrapper {
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: $text;
+    transform: translate(0, 10px);
+    transition: all .3s;
+    width: 100%;
+
+    &_visible {
+        transform: translate(0, 0);
+    }
+}

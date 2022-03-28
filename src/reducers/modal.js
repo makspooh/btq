@@ -1,23 +1,23 @@
 import produce from 'immer';
 
-import { SET_IS_TOAST_VISIBLE, SET_MESSAGE } from '../actions/toast';
+import { SET_IS_MODAL_VISIBLE, SET_VIEWS } from '../actions/modal';
 
 const initialState = {
     isVisible: false,
-    message: ''
+    views: []
 };
 
 export default produce((draft, action) => {
     const { type, payload } = action;
 
     switch (type) {
-        case SET_IS_TOAST_VISIBLE: {
+        case SET_IS_MODAL_VISIBLE: {
             draft.isVisible = payload.isVisible;
             break;
         }
 
-        case SET_MESSAGE: {
-            draft.message = payload.message;
+        case SET_VIEWS: {
+            draft.views = payload.views;
             break;
         }
 
