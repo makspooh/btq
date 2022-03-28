@@ -7,11 +7,7 @@ function About() {
         <div className={styles.container}>
             <div className={styles.content}>
                 <span className={styles.text}>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio ex iusto quo nesciunt temporibus! Veritatis quam eveniet accusamus molestias sunt incidunt saepe repellendus voluptatibus praesentium, labore sapiente odio atque ab?
-                </span>
-
-                <span className={styles.text}>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio ex iusto quo nesciunt temporibus! Veritatis quam eveniet accusamus molestias sunt incidunt saepe repellendus voluptatibus praesentium, labore sapiente odio atque ab?
+                Belletriq is the Ukrainian based artistic community which unites likeminded people from all over the world. Started mainly as sound-production team, Belletriq keeps growing in all creative directions and won’t stop no matter how hard the war tries to prevent it.
                 </span>
             </div>
         </div>
