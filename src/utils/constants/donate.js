@@ -1,6 +1,6 @@
 export const DONATE = {
     crypto: {
-        title: 'Donate with crypto:',
+        title: 'Donate with crypto',
         items: [
             {
                 type: 'text',
@@ -25,7 +25,7 @@ export const DONATE = {
         ]
     },
     currency: {
-        title: 'Donate with currency:',
+        title: 'Donate with currency',
         items: [
             {
                 type: 'link',

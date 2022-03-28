@@ -1,0 +1,93 @@
+@import '../../../../../styles/variables.scss';
+
+.container {
+    display: flex;
+    flex-direction: column;
+    margin: 30px 0;
+    background-color: rgba($color: $text, $alpha: .8);
+    width: 100%;
+    position: relative;
+    z-index: 1;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.donateBox {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+
+    &:not(:last-of-type) {
+        margin-bottom: 10px;
+    }
+}
+
+.title {
+    color: $background;
+    font-size: 22px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.linksContainer {
+    max-height: 0;
+    overflow: hidden;
+    transition: all .3s;
+
+    &_visible {
+        max-height: 200px;
+        overflow: visible;
+    }
+}
+
+.linkContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.link {
+    text-decoration: none;
+    color: $background;
+    font-size: 16px;
+    display: inline-block;
+    margin-bottom: 3px;
+    font-weight: 700;
+}
+
+.iconsContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    left: 5px;
+}
+
+.iconContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all .3s;
+
+    &:hover {
+        background-color: rgba($color: #000000, $alpha: .2);
+
+        .icon {
+            transform: scale(1.1);
+        }
+    }
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+
+    path {
+        fill: $background;
+    }
+}

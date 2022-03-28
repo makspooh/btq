@@ -5,7 +5,7 @@ import { DONATE } from '../../../utils/constants/donate';
 
 import Header from '../../base/Header';
 import Footer from '../../base/Footer';
-import Logo from './components/Logo';
+import Donate from './components/Donate';
 import SvgIcon from '../../base/SvgIcon';
 import About from './components/About';
 import Artists from './components/Artists/Artists';
@@ -81,14 +81,13 @@ function Main() {
     }
   }
 
-  const renderDonate = () => {
-    const donateArray = Object.values(DONATE);
-
-    return donateArray.map((el) => {
-      const { title } = el;
-
-
-    });
+  const renderLogo = () => {
+    return (
+      <div className={styles.logoContainer}>
+        <span className={styles.logoText}>belletriq</span>
+        <span className={styles.logoTextBg}>belletriq</span>
+      </div>
+    );
   }
 
   const getWidth = () => {
@@ -113,9 +112,14 @@ function Main() {
         />
 
         <div className={styles.infoData}>
-          <Logo />
+          {renderLogo()}
+          
+          <Donate />
 
-          {renderDonate()}
+          <SvgIcon
+              type='bgPic'
+              className={styles.bgPic}
+          />
         </div>
 
         <Footer
