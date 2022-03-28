@@ -1,9 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 import * as ROUTES from '../../../utils/constants/routes';
+import { DONATE } from '../../../utils/constants/donate';
 
 import Header from '../../base/Header';
 import Footer from '../../base/Footer';
+import Logo from './components/Logo';
 import SvgIcon from '../../base/SvgIcon';
 import About from './components/About';
 import Artists from './components/Artists/Artists';
@@ -79,13 +81,14 @@ function Main() {
     }
   }
 
-  const renderLogo = () => {
-    return (
-      <>
-        <span className={styles.logoText}>belletriq</span>
-        <span className={styles.logoTextBg}>belletriq</span>
-      </>
-    );
+  const renderDonate = () => {
+    const donateArray = Object.values(DONATE);
+
+    return donateArray.map((el) => {
+      const { title } = el;
+
+
+    });
   }
 
   const getWidth = () => {
@@ -110,12 +113,9 @@ function Main() {
         />
 
         <div className={styles.infoData}>
-          {renderLogo()}
+          <Logo />
 
-          <SvgIcon
-            type='bgPic'
-            className={styles.bgPic}
-          />
+          {renderDonate()}
         </div>
 
         <Footer
