@@ -4,22 +4,22 @@ export const DONATE = {
         items: [
             {
                 type: 'text',
-                title: 'ALGO',
+                title: 'algo',
                 value: 'GXY26JFFQUNAN6VUZOAWY62BV5ZTYSPS4ZDBMZPZWHG3QIPU3DGPFY4Y6Y'
             },
             {
                 type: 'text',
-                title: 'BTC',
+                title: 'btc',
                 value: 'bc1qwvpsh8tk5r4a45u6u8c07pelqzjk7kykq49jx3'
             },
             {
                 type: 'text',
-                title: 'ETH',
+                title: 'eth',
                 value: '0x04a0616947dB7D785c4E37983709c0cD6E372a71'
             },
             {
                 type: 'text',
-                title: 'AUDIO',
+                title: 'audio',
                 value: '0x04a0616947dB7D785c4E37983709c0cD6E372a71'
             },
         ]

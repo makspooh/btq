@@ -7,7 +7,6 @@
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
     "classnames": "^2.3.1",
-    "crypto-transfer-qr": "^1.1.5",
     "firebase": "^9.6.9",
     "immer": "^9.0.12",
     "lodash": "^4.17.21",

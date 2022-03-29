@@ -47,7 +47,7 @@ function Donate({ setIsToastVisible, updateToastMessage, setIsModalVisible, setM
     }
 
     const renderDonateItems = (items) => {
-        return items.map((el, index) => {
+        return items.map((el) => {
             const { type, title, value } = el;
 
             return (
@@ -74,7 +74,7 @@ function Donate({ setIsToastVisible, updateToastMessage, setIsModalVisible, setM
                                     <SvgIcon
                                         type='qr'
                                         className={styles.icon}
-                                        onClick={handleShowQr(value)}
+                                        onClick={handleShowQr(title)}
                                     />
                                 </div>
                             </div>

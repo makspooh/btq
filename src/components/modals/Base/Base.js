@@ -25,7 +25,7 @@ function Base({ views, isVisible, modals, setIsModalVisible, setModalViews }) {
                 [styles.wrapper_visible]: isVisible
             })}>
                 {Modal && (
-                    <Modal />
+                    <Modal views={views} />
                 )}
             </div>
         </div>

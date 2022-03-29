@@ -1,4 +1,5 @@
 @import '../../../styles/variables.scss';
+@import '../../../styles/mixins.scss';
 
 .container {
     position: fixed;
@@ -35,5 +36,11 @@
 
     &_visible {
         transform: translate(0, 0);
+    }
+}
+
+@include medium {
+    .wrapper {
+        width: auto;
     }
 }
