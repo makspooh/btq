@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import { Provider }             from 'react-redux';
 
 import { ABOUT, ARTISTS, MIXES, ROOT } from './utils/constants/routes';
@@ -17,7 +17,7 @@ import './App.scss';
 function App() {
   return (
     <div className="App">
-        <BrowserRouter>
+        <HashRouter>
           <Provider store={store}>
             <WithModal>
               <WithToast>
@@ -32,7 +32,7 @@ function App() {
               </WithToast>
             </WithModal>
           </Provider>
-        </BrowserRouter>
+        </HashRouter>
     </div>
   );
 }
