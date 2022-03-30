@@ -81,7 +81,7 @@ function Main() {
     }
 
     window.scrollTo({
-      top: window.innerHeight,
+      top: document.body.offsetHeight,
       behavior: 'smooth'
     });
   }
