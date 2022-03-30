@@ -85,7 +85,7 @@
     opacity: 0;
 
     &_visible {
-        max-height: 200px;
+        max-height: 300px;
         overflow: visible;
         opacity: 1;
     }
@@ -102,7 +102,7 @@
     color: $background;
     font-size: 16px;
     display: inline-block;
-    margin-bottom: 3px;
+    margin-top: 5px;
     font-weight: 700;
 }
 

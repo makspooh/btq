@@ -5,14 +5,14 @@ import { ABOUT, ARTISTS, MIXES } from '../../utils/constants/routes';
 
 export function WithRedirect({ children }) {
     const navigate = useNavigate();
-    const { pathname } = window.location;
+    const { hash } = window.location;
     const routes = useMemo(() => [ARTISTS, MIXES, ABOUT], []);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    useEffect(handleRedirect, [pathname]);
+    useEffect(handleRedirect, [hash]);
 
     function handleRedirect() {
-        const isRedirect = !routes.includes(pathname);
+        const isRedirect = !routes.includes(hash.replace('#', ''));
 
         if (isRedirect) {
             navigate(ABOUT);

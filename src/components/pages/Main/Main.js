@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 import * as ROUTES from '../../../utils/constants/routes';
-import { DONATE } from '../../../utils/constants/donate';
 
 import Header from '../../base/Header';
 import Footer from '../../base/Footer';
@@ -24,11 +23,12 @@ function Main() {
 
   const headerRef = useRef(null);
   const footerRef = useRef(null);
+  const contentRef = useRef(null);
 
-  const { pathname } = window.location;
+  const { hash } = window.location;
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(handlePathChange, [pathname]);
+  useEffect(handlePathChange, [hash]);
 
   useEffect(() => {
     window.addEventListener('resize', handleResize);
@@ -62,7 +62,7 @@ function Main() {
   }
 
   function handlePathChange() {
-    const nextPathIndex = PATHS.indexOf(pathname);
+    const nextPathIndex = PATHS.indexOf(hash.replace('#', ''));
 
     switch (true) {
       case nextPathIndex === 0: {
@@ -79,13 +79,22 @@ function Main() {
         break;
       }
     }
+
+    window.scrollTo({
+      top: window.innerHeight,
+      behavior: 'smooth'
+    });
   }
 
   const renderLogo = () => {
     return (
       <div className={styles.logoContainer}>
-        <span className={styles.logoText}>belletriq</span>
-        <span className={styles.logoTextBg}>belletriq</span>
+        <div className={styles.logoWrapper}>
+          <span className={styles.logoText}>belletriq</span>
+          <span className={styles.logoTextBg}>belletriq</span>
+        </div>
+
+        <p className={styles.logoDescription}>artists community from Ukraine</p>
       </div>
     );
   }
@@ -129,7 +138,10 @@ function Main() {
         />
       </div>
 
-      <div className={styles.content}>
+      <div
+        ref={contentRef}
+        className={styles.content}
+      >
         <div
           className={styles.contentData}
           style={{

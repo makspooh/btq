@@ -11,7 +11,7 @@ function About() {
                 </span>
 
                 <span className={styles.text}>
-                    We collecting donates to support artists in need, Armed Forces of Ukraine and volunteers. Slava Ukraïni!
+                    We collecting donates to support artists in need and forthcoming projects. Slava Ukraïni!
                 </span>
             </div>
         </div>

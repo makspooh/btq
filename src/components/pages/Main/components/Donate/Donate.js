@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { connect, useDispatch } from 'react-redux';
 import classNames from 'classnames';
-import cloneDeep from 'lodash/cloneDeep';
 
 import * as toastActions from '../../../../../actions/toast';
 import * as modalActions from '../../../../../actions/modal';
@@ -13,26 +12,12 @@ import { DONATE } from '../../../../../utils/constants/donate';
 import styles from './Donate.module.scss';
 
 function Donate({ setIsToastVisible, updateToastMessage, setIsModalVisible, setModalViews }) {
-    const [isVisibleState, setIsVisibleState] = useState({ crypto: false, currency: false });
+    const [isVisible, setIsVisible] = useState(false);
 
     const dispatch = useDispatch();
 
-    const handleChangeVisibility = (index) => () => {
-        setIsVisibleState((prev) => {
-            const output = cloneDeep(prev);
-
-            switch (index) {
-                case 0:
-                    output.crypto = !output.crypto;
-                    break;
-            
-                default:
-                    output.currency = !output.currency;
-                    break;
-            }
-
-            return output;
-        });
+    const handleChangeVisibility = () => {
+        setIsVisible(prev => !prev);
     }
 
     const handleCopy = (value) => () => {
@@ -56,7 +41,7 @@ function Donate({ setIsToastVisible, updateToastMessage, setIsModalVisible, setM
                     className={styles.linkContainer}
                 >
                     <span className={styles.link}>
-                        {title}
+                        {title.toUpperCase()}
                     </span>
 
                     {type === 'text'
@@ -98,10 +83,7 @@ function Donate({ setIsToastVisible, updateToastMessage, setIsModalVisible, setM
     };
 
     const renderDonate = () => {
-      const donateArray = Object.values(DONATE);
-  
-      return donateArray.map((el, index) => {
-        const { title, items } = el;
+        const { title, items } = DONATE;
   
         return (
             <div
@@ -110,29 +92,24 @@ function Donate({ setIsToastVisible, updateToastMessage, setIsModalVisible, setM
             >
                 <div
                     className={styles.titleContainer}
-                    onClick={handleChangeVisibility(index)}
+                    onClick={handleChangeVisibility}
                 >
                     <span className={styles.title}>{title}</span>
 
                     <div className={classNames(styles.indicator, {
-                        [styles.indicatorOpened]: index === 0
-                            ? isVisibleState.crypto
-                            : isVisibleState.currency
+                        [styles.indicatorOpened]: isVisible
                     })}>
                         <div className={styles.indicatorItem} />
                     </div>
                 </div>
 
                 <div className={classNames(styles.linksContainer, {
-                    [styles.linksContainer_visible]: index === 0
-                        ? isVisibleState.crypto
-                        : isVisibleState.currency
+                    [styles.linksContainer_visible]: isVisible
                 })}>
                     {renderDonateItems(items)}
                 </div>
             </div>
         );
-      });
     }
 
     return (

@@ -1,14 +1,16 @@
+import { ABOUT, ARTISTS, MIXES } from './routes';
+
 export const NAVIGATION = [
     {
         title: 'about',
-        path: '/about'
+        path: ABOUT
     },
     {
         title: 'artists',
-        path: '/artists'
+        path: ARTISTS
     },
     {
         title: 'mixes',
-        path: '/mixes'
+        path: MIXES
     }
 ];
