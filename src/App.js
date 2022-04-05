@@ -13,6 +13,7 @@ import { WithRedirect } from './components/hoc/withRedirect';
 import store from './store';
 
 import './App.scss';
+import './App.scss';
 
 function App() {
   return (
