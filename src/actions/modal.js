@@ -14,3 +14,5 @@ export function setModalViews(views) {
         payload: { views }
     };
 }
+
+export const a = 0;
